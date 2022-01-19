@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class QueryDragon extends MyConnexion{
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
@@ -79,6 +80,8 @@ public class QueryDragon extends MyConnexion{
 		return success;
 	}
 	public static void main(String[] args) {
+		Scanner scan=new Scanner(System.in);
+		
 		openConnection();
 		readAll();
 		//update("poivre");
@@ -87,6 +90,18 @@ public class QueryDragon extends MyConnexion{
 		update("DenverA");
 		readAll();
 		deleteByNamePrepared("DenverA");
+		readAll();
 		closeConnection();
+		boolean choix=false;
+		do {
+		
+		choix=true;
+		System.out.println("Voulez-vous faire des modifications? Réponse attendue: o/n");
+		String rep=scan.nextLine();
+			if (rep.equals("o")) {
+				
+			}
+		}while(!choix);
+		System.out.println("Les portes du pénitencier, vont se refermer. Bonne journée.");
 		}
 }
