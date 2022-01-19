@@ -99,7 +99,21 @@ public class QueryDragon extends MyConnexion{
 		System.out.println("Voulez-vous faire des modifications? Réponse attendue: o/n");
 		String rep=scan.nextLine();
 			if (rep.equals("o")) {
-				
+				System.out.println("Voulez-vous créer un dragon? Réponse attendue: o/n");
+				String repCrea=scan.nextLine();
+				if (repCrea.equals("o")) {
+					System.out.println("Quel est son nom?");
+					String repNom=scan.nextLine();
+					System.out.println("Quel est son id?");
+					int repId=scan.nextInt();
+					scan.nextLine();
+					System.out.println("Quel est son sexe?");
+					String repSexe=scan.nextLine();
+					System.out.println("Quel est sa taille?");
+					System.out.println("Quel est son nombre d'écailles?");
+					System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
+					System.out.println("Quel est son nom?");
+				}
 			}
 		}while(!choix);
 		System.out.println("Les portes du pénitencier, vont se refermer. Bonne journée.");
