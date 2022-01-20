@@ -9,6 +9,13 @@ public class QueryDragon extends MyConnexion{
 	//static Scanner scan=new Scanner(System.in);
 	static Clavier scan=new Clavier(); 
 	static Boolean flag=false;
+//	String repNom;
+//	int repId;
+//	String repSexe;
+//	int repTail;
+//	int repEcail;
+//	String repFeu;
+//	String repAmor;
 	//create
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
 		boolean flag=false;
@@ -179,55 +186,103 @@ public class QueryDragon extends MyConnexion{
 		String repSexe="";
 		int repTail=0;
 		int repEcail=0;
-		String repFeu="non";
-		String repAmor="";	
+		String repFeu="";
+		String repAmor="";
+			
 		boolean test=false;
 		do {
 			test=true;
 		//nom
 		createName(repNom);
+		
 		//id
 		createId(repId);
+		System.out.println(repId);
 		//sexe
 		createSexe(repSexe);
+		
 		//taille
 		createTaille(repTail);
+		
 		//ecailles
 		createEcailles(repEcail);
+		
 		//feu
 		createFeu(repFeu);
+		
 		//amour
 		createAmour(repAmor);
-			if(repSexe.length()>1||!repFeu.equals("oui")) {
-				
-			}else {
-				test=true;
+			test=true;
 			create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
-			}
 		}while(!test);
 		
 		
 	}
+	//create name + verification nmb char + contain number 
 	public static String createName(String repNom) {
 		boolean test=false;
 		do {
 			test=true;
 			System.out.println("Quel est son nom?");
 			repNom=Clavier.lireString();
-			
-		}while(!test);
-		
+			if(repNom.length()>50) {
+				System.out.println("le nom de votre Dragon est trop long (+50 caratères) veuillez reéssayer:");
+				test=false;
+			}
+			else {
+				test=true;
+			}
+			for(int i= 0; i<repNom.length();i++) {
+				if(!Character.isDigit(repNom.charAt(i))) {
+					test=true;	
+				}
+				else {
+					System.out.println("le nom de votre Dragon ne doit pas contenir de chiffre");
+					test=false;
+					}
+				}
+			//return repNom;
+			}while(!test);
 		return repNom; 
 	}
+	//create id
 	public static int createId(int repId) {
-		System.out.println("Quel est son id?");
-		repId=Clavier.lireInt();
+		boolean test=false;
+		do {
+			//
+			//test=true;
+			try {
+				System.out.println("Quel est son id?");
+				repId=Clavier.lireInt();
+				test=true;
+			}catch(Exception e) {
+				System.err.println("Erreur: " + e.getMessage());
+				test=false;
+				}
+			//	
+		//return repId;
+		}while(!test);
+		System.out.println(repId);
 		return repId;
+		
 	}
 	public static String createSexe(String repSexe) {
-		System.out.println("Quel est son sexe? rep attendue: M ou F(un seul caractère)");
-		repSexe=Clavier.lireString();
-		return repSexe;
+		boolean test=false;
+		do {
+			test=true;
+			System.out.println("Quel est son sexe? reponse attendue: M ou F(un seul caractère)");
+			repSexe=Clavier.lireString();
+			if(repSexe.equals("m")||repSexe.equals("M")||repSexe.equals("f")||repSexe.equals("F")) {
+				test=true;
+			}
+			else {
+				System.out.println("reponse attendue: M ou F(un seul caractère) veuillez reéssayer:");
+				test=false;
+			}
+		//return repSexe;	
+		}while(!test);
+		
+		return repSexe;	
 	}
 	public static int createTaille(int repTail) {
 		System.out.println("Quel est sa taille?");
@@ -240,14 +295,44 @@ public class QueryDragon extends MyConnexion{
 		return repEcail;
 	}
 	public static String createFeu(String repFeu) {
-		System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
-		repFeu=Clavier.lireString();
+		boolean test=false;
+		do {
+			test=true;
+			System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
+			repFeu=Clavier.lireString();
+			if(repFeu.equals("oui")||repFeu.equals("OUI")||repFeu.equals("non")||repFeu.equals("NON")) {
+				test=true;
+			}
+			else {
+				System.out.println("reponse attendue: M ou F(un seul caractère) veuillez reéssayer:");
+				test=false;
+			}
+		//return repFeu;	
+		}while(!test);
 		return repFeu;
+		
 	}
 	public static String createAmour(String repAmor) {
-		System.out.println("Quel est son comportement amoureux?");
-		repAmor=Clavier.lireString();
+		boolean test=false;
+		do {
+			test=false;
+			System.out.println("Quel est son comportement amoureux?");
+			repAmor=Clavier.lireString();
+			if(repAmor.length()>50) {
+				System.out.println("le comportement de votre Dragon est trop long (+50 caratères) veuillez reéssayer:");
+				test=false;
+			}
+			else if(repAmor.matches("[0-9]")) {
+				System.out.println("le comportement de votre Dragon ne doit pas contenir de chiffre");
+				test=false;
+			}
+			else {
+				test=true;
+			}
+			//return repAmor;
+		}while(!test);
 		return repAmor;
+		
 	}
 	//name choice
 	public static void userUpdName() {
