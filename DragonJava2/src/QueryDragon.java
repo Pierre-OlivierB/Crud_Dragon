@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class QueryDragon extends MyConnexion{
 	//static Scanner scan=new Scanner(System.in);
 	static Clavier scan=new Clavier(); 
+	//create
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
 		boolean flag=false;
 		try {
@@ -29,6 +30,7 @@ public class QueryDragon extends MyConnexion{
 		System.out.println("fin requête create");
 		return flag;
 	}
+	//read
 	public static void readAll() {
 		try {
 			Statement declaration=accessDataBase.createStatement();
@@ -52,6 +54,7 @@ public class QueryDragon extends MyConnexion{
 			System.err.println("Erreur d'affichage d'ing: " + e.getMessage());
 		}
 	}
+	//delete
 	public static boolean deleteByNamePrepared(String nom) {
 		boolean success=false;
 		try {
@@ -66,7 +69,8 @@ public class QueryDragon extends MyConnexion{
 		System.out.println("fin requête delete");
 	return success;
 	}
-	public static boolean update(String newNom, String oldNom) {
+	//update
+	public static boolean updateNom(String newNom, String oldNom) {
 		boolean success=false;
 		try {
 			String query = "UPDATE dragons2 SET Dragon=? WHERE Dragon=?;";
@@ -82,6 +86,87 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	public static boolean updateTaille(String nom, int taille) {
+		boolean success=false;
+		try {
+			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			PreparedStatement declaration=accessDataBase.prepareStatement(query);
+			declaration.setInt(1,taille);
+			declaration.setString(2,nom);
+			int executeUpdate=declaration.executeUpdate();
+			success=(executeUpdate==1);
+			} catch (Exception e) {
+			System.err.println(
+			"Erreur d'affichage d'ing: " + e.getMessage()
+			);
+			}
+		return success;
+	}
+	public static boolean updateEcaille(String nom, int ecailles) {
+		boolean success=false;
+		try {
+			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			PreparedStatement declaration=accessDataBase.prepareStatement(query);
+			declaration.setInt(1,ecailles);
+			declaration.setString(2,nom);
+			int executeUpdate=declaration.executeUpdate();
+			success=(executeUpdate==1);
+			} catch (Exception e) {
+			System.err.println(
+			"Erreur d'affichage d'ing: " + e.getMessage()
+			);
+			}
+		return success;
+	}
+	public static boolean updateFeu(String nom, String feu) {
+		boolean success=false;
+		try {
+			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			PreparedStatement declaration=accessDataBase.prepareStatement(query);
+			declaration.setString(1,feu);
+			declaration.setString(2,nom);
+			int executeUpdate=declaration.executeUpdate();
+			success=(executeUpdate==1);
+			} catch (Exception e) {
+			System.err.println(
+			"Erreur d'affichage d'ing: " + e.getMessage()
+			);
+			}
+		return success;
+	}
+	public static boolean updateAmour(String nom, String amour) {
+		boolean success=false;
+		try {
+			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			PreparedStatement declaration=accessDataBase.prepareStatement(query);
+			declaration.setString(1,amour);
+			declaration.setString(2,nom);
+			int executeUpdate=declaration.executeUpdate();
+			success=(executeUpdate==1);
+			} catch (Exception e) {
+			System.err.println(
+			"Erreur d'affichage d'ing: " + e.getMessage()
+			);
+			}
+		return success;
+	}
+	public static boolean updateSexe(String nom, String sexe) {
+		boolean success=false;
+		try {
+			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			PreparedStatement declaration=accessDataBase.prepareStatement(query);
+			declaration.setString(1,sexe);
+			declaration.setString(2,nom);
+			int executeUpdate=declaration.executeUpdate();
+			success=(executeUpdate==1);
+			} catch (Exception e) {
+			System.err.println(
+			"Erreur d'affichage d'ing: " + e.getMessage()
+			);
+			}
+		return success;
+	}
+	//user choice
 	public static void userCreaChoice() {
 		System.out.println("Quel est son nom?");
 		String repNom=Clavier.lireString();
@@ -99,13 +184,55 @@ public class QueryDragon extends MyConnexion{
 		String repAmor=Clavier.lireString();
 		create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
 	}
+	//name choice
 	public static void userUpdName() {
 		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
 		String repOldNom=Clavier.lireString();
 		System.out.println("Quel est le nom du dragon que vous voulez lui donner?");
 		String repNewNom=Clavier.lireString();
-		update(repNewNom,repOldNom);
+		updateNom(repNewNom,repOldNom);
 	}
+	//sexe choice
+	public static void userUpdSexe() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repNom=Clavier.lireString();
+		System.out.println("Quel est le sexe choisi? Réponse attendue : M/F");
+		String repNewSexe=Clavier.lireString();
+		updateSexe(repNom,repNewSexe);
+	}
+	//taille  choice
+	public static void userUpdTaille() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repNom=Clavier.lireString();
+		System.out.println("Quel est la taille choisi?");
+		int repNewTaille=Clavier.lireInt();
+		updateTaille(repNom,repNewTaille);
+	}
+	//nmb ecaille choice
+	public static void userUpdEcaille() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repNom=Clavier.lireString();
+		System.out.println("Quel est son nombre d'écailles? ");
+		int repNewEcaille=Clavier.lireInt();
+		updateEcaille(repNom,repNewEcaille);
+	}
+	//crache du feu choice
+	public static void userUpdFeu() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repNom=Clavier.lireString();
+		System.out.println("Ce Dragon crache-t-il du feu? Réponse attendue: oui/non");
+		String repNewFeu=Clavier.lireString();
+		updateFeu(repNom,repNewFeu);
+	}
+	//comportement choice
+	public static void userUpdAmour() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repNom=Clavier.lireString();
+		System.out.println("Quel est son comportement amoureux?");
+		String repNewAmour=Clavier.lireString();
+		updateAmour(repNom,repNewAmour);
+	}
+	//delete choice
 	public static void userDelChoice() {
 		System.out.println("Quel est le dragon que vous voulez supprimer? Réponse attendue: nom du Dragon");
 		String repNom=Clavier.lireString();
@@ -120,7 +247,7 @@ public class QueryDragon extends MyConnexion{
 //		//update("poivre");
 //		create("Denver",10,"F",250,2300,"non","proche");
 //		readAll();
-//		update("DenverA","Denver");
+//		updateNom("DenverA","Denver");
 //		readAll();
 //		deleteByNamePrepared("DenverA");
 //		readAll();	
@@ -150,20 +277,20 @@ public class QueryDragon extends MyConnexion{
 						userUpdName();
 								}
 						else if(repmodif.equals("sexe")) {
-						
+						userUpdSexe();
 						
 								}
 						else if(repmodif.equals("taille")) {
-						
+						userUpdTaille();
 								}
 						else if(repmodif.equals("ecaille")) {
-	
+						userUpdEcaille();
 								}
 						else if(repmodif.equals("feu")) {
-	
+						userUpdFeu();
 								}
 						else if(repmodif.equals("amour")) {
-	
+						userUpdAmour();
 					}
 					readAll();
 					}while(!flag);
