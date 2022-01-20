@@ -174,21 +174,80 @@ public class QueryDragon extends MyConnexion{
 	}
 	//user choice
 	public static void userCreaChoice() {
-		System.out.println("Quel est son nom?");
-		String repNom=Clavier.lireString();
+		String repNom="";
+		int repId=0;
+		String repSexe="";
+		int repTail=0;
+		int repEcail=0;
+		String repFeu="non";
+		String repAmor="";	
+		boolean test=false;
+		do {
+			test=true;
+		//nom
+		createName(repNom);
+		//id
+		createId(repId);
+		//sexe
+		createSexe(repSexe);
+		//taille
+		createTaille(repTail);
+		//ecailles
+		createEcailles(repEcail);
+		//feu
+		createFeu(repFeu);
+		//amour
+		createAmour(repAmor);
+			if(repSexe.length()>1||!repFeu.equals("oui")) {
+				
+			}else {
+				test=true;
+			create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
+			}
+		}while(!test);
+		
+		
+	}
+	public static String createName(String repNom) {
+		boolean test=false;
+		do {
+			test=true;
+			System.out.println("Quel est son nom?");
+			repNom=Clavier.lireString();
+			
+		}while(!test);
+		
+		return repNom; 
+	}
+	public static int createId(int repId) {
 		System.out.println("Quel est son id?");
-		int repId=Clavier.lireInt();
+		repId=Clavier.lireInt();
+		return repId;
+	}
+	public static String createSexe(String repSexe) {
 		System.out.println("Quel est son sexe? rep attendue: M ou F(un seul caractère)");
-		String repSexe=Clavier.lireString();
+		repSexe=Clavier.lireString();
+		return repSexe;
+	}
+	public static int createTaille(int repTail) {
 		System.out.println("Quel est sa taille?");
-		int repTail=Clavier.lireInt();
+		repTail=Clavier.lireInt();
+		return repTail;
+	}
+	public static int createEcailles(int repEcail) {
 		System.out.println("Quel est son nombre d'écailles?");
-		int repEcail=Clavier.lireInt();
+		repEcail=Clavier.lireInt();
+		return repEcail;
+	}
+	public static String createFeu(String repFeu) {
 		System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
-		String repFeu=Clavier.lireString();
+		repFeu=Clavier.lireString();
+		return repFeu;
+	}
+	public static String createAmour(String repAmor) {
 		System.out.println("Quel est son comportement amoureux?");
-		String repAmor=Clavier.lireString();
-		create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
+		repAmor=Clavier.lireString();
+		return repAmor;
 	}
 	//name choice
 	public static void userUpdName() {
@@ -266,6 +325,7 @@ public class QueryDragon extends MyConnexion{
 		
 		do {
 			flag=true;
+			System.out.println("Choisissez ce que vous voulez modifier, puis le nom du dragon ciblé et enfin donnez la modification à apporter.");
 			System.out.println("Que voulez vous modifier? Réponse attendu nom/sexe/taille/ecaille/feu/amour)");
 			String repmodif=Clavier.lireString();
 			if(repmodif.equals("nom")) {
