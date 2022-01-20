@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QueryDragon extends MyConnexion{
-	static Scanner scan=new Scanner(System.in);
+	//static Scanner scan=new Scanner(System.in);
+	static Clavier scan=new Clavier(); 
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
 		boolean flag=false;
 		try {
@@ -38,8 +39,8 @@ public class QueryDragon extends MyConnexion{
 						resultat.getString("Dragon"),
 						resultat.getInt("DragonID"),
 						resultat.getString("Sexe"),
-						resultat.getString("Longueur"),
-						resultat.getString("NombreEcailles"),
+						resultat.getInt("Longueur"),
+						resultat.getInt("NombreEcailles"),
 						resultat.getString("CracheDuFeu"),
 						resultat.getString("ComportementAmoureux")
 				};
@@ -65,12 +66,13 @@ public class QueryDragon extends MyConnexion{
 		System.out.println("fin requête delete");
 	return success;
 	}
-	public static boolean update(String nom) {
+	public static boolean update(String newNom, String oldNom) {
 		boolean success=false;
 		try {
-			String query = "UPDATE dragons2 SET Dragon=? WHERE Dragon='Denver';";
+			String query = "UPDATE dragons2 SET Dragon=? WHERE Dragon=?;";
 			PreparedStatement declaration=accessDataBase.prepareStatement(query);
-			declaration.setString(1,nom);
+			declaration.setString(1,newNom);
+			declaration.setString(2,oldNom);
 			int executeUpdate=declaration.executeUpdate();
 			success=(executeUpdate==1);
 			} catch (Exception e) {
@@ -82,28 +84,31 @@ public class QueryDragon extends MyConnexion{
 	}
 	public static void userCreaChoice() {
 		System.out.println("Quel est son nom?");
-		String repNom=scan.nextLine();
+		String repNom=Clavier.lireString();
 		System.out.println("Quel est son id?");
-		int repId=scan.nextInt();
-		//scan.nextLine();
-		System.out.println("Quel est son sexe? rep attendue: M ou F");
-		String repSexe=scan.nextLine();
-		scan.nextLine();
+		int repId=Clavier.lireInt();
+		System.out.println("Quel est son sexe? rep attendue: M ou F(un seul caractère)");
+		String repSexe=Clavier.lireString();
 		System.out.println("Quel est sa taille?");
-		int repTail=scan.nextInt();
-		scan.nextLine();
+		int repTail=Clavier.lireInt();
 		System.out.println("Quel est son nombre d'écailles?");
-		int repEcail=scan.nextInt();
-		scan.nextLine();
+		int repEcail=Clavier.lireInt();
 		System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
-		String repFeu=scan.nextLine();
+		String repFeu=Clavier.lireString();
 		System.out.println("Quel est son comportement amoureux?");
-		String repAmor=scan.nextLine();
+		String repAmor=Clavier.lireString();
 		create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
+	}
+	public static void userUpdName() {
+		System.out.println("Quel est le nom du dragon que vous voulez moddifier? Réponse attendue: nom du Dragon");
+		String repOldNom=Clavier.lireString();
+		System.out.println("Quel est le nom du dragon que vous voulez lui donner?");
+		String repNewNom=Clavier.lireString();
+		update(repNewNom,repOldNom);
 	}
 	public static void userDelChoice() {
 		System.out.println("Quel est le dragon que vous voulez supprimer? Réponse attendue: nom du Dragon");
-		String repNom=scan.nextLine();
+		String repNom=Clavier.lireString();
 		deleteByNamePrepared(repNom);
 	}
 	
@@ -115,7 +120,7 @@ public class QueryDragon extends MyConnexion{
 //		//update("poivre");
 //		create("Denver",10,"F",250,2300,"non","proche");
 //		readAll();
-//		update("DenverA");
+//		update("DenverA","Denver");
 //		readAll();
 //		deleteByNamePrepared("DenverA");
 //		readAll();	
@@ -124,24 +129,69 @@ public class QueryDragon extends MyConnexion{
 		do {
 		
 		choix=true;
-		System.out.println("Voulez-vous faire des modifications? Réponse attendue: o/n");
-		String rep=scan.nextLine();
+		System.out.println("Voulez-vous travailler sur la base de données Dragon? Réponse attendue: o/n");
+		String rep=Clavier.lireString();
 			if (rep.equals("o")) {
 				System.out.println("Voulez-vous créer un dragon? Réponse attendue: o/n");
-				String repCrea=scan.nextLine();
+				String repCrea=Clavier.lireString();
 				if (repCrea.equals("o")) {
 					userCreaChoice();
 					readAll();
 				}
+				System.out.println("Voulez-vous modifier le nom d'un dragon? Réponse attendue: o/n");
+				String repUpd=Clavier.lireString();
+				Boolean flag=false;
+				if (repUpd.equals("o")) {
+					do {
+						flag=true;
+						System.out.println("Que voulez vous modifier? Réponse attendu nom/sexe/taille/ecaille/feu/amour)");
+						String repmodif=Clavier.lireString();
+						if(repmodif.equals("nom")) {
+						userUpdName();
+								}
+						else if(repmodif.equals("sexe")) {
+						
+						
+								}
+						else if(repmodif.equals("taille")) {
+						
+								}
+						else if(repmodif.equals("ecaille")) {
+	
+								}
+						else if(repmodif.equals("feu")) {
+	
+								}
+						else if(repmodif.equals("amour")) {
+	
+					}
+					readAll();
+					}while(!flag);
+					
+					
+				}
 				System.out.println("Voulez-vous supprimer un dragon? Réponse attendue: o/n");
-				String repDel=scan.nextLine();
+				String repDel=Clavier.lireString();
 				if (repDel.equals("o")) {
 					userDelChoice();
 					readAll();
 				}
+				System.out.println("Voulez-vous faire d'autres modifications? Réponse attendue: o/n");
+				String repBis=Clavier.lireString();
+					if(repBis.equals("o")) {
+						choix=false;
+					}
+					else {
+						choix=true;			
+					}	
 			}
-		
-			
+			else {
+				System.out.println("Êtes-vous sûr de votre choix? Réponse attendue: o/n");
+				String repTest=Clavier.lireString();
+				if(repTest.equals("n")) {
+					choix=false;
+				}
+			}
 		}while(!choix);
 		closeConnection();
 		System.out.println("Les portes du pénitencier, vont se refermer. Bonne journée.");
