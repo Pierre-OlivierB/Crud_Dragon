@@ -69,7 +69,7 @@ public class QueryDragon extends MyConnexion{
 		System.out.println("fin requête delete");
 	return success;
 	}
-	//update
+	//update nom
 	public static boolean updateNom(String newNom, String oldNom) {
 		boolean success=false;
 		try {
@@ -86,10 +86,11 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	//update taille
 	public static boolean updateTaille(String nom, int taille) {
 		boolean success=false;
 		try {
-			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			String query = "UPDATE dragons2 SET Longueur=? WHERE Dragon=?;";
 			PreparedStatement declaration=accessDataBase.prepareStatement(query);
 			declaration.setInt(1,taille);
 			declaration.setString(2,nom);
@@ -102,10 +103,11 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	//update nmb ecailles
 	public static boolean updateEcaille(String nom, int ecailles) {
 		boolean success=false;
 		try {
-			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			String query = "UPDATE dragons2 SET NombreEcailles=? WHERE Dragon=?;";
 			PreparedStatement declaration=accessDataBase.prepareStatement(query);
 			declaration.setInt(1,ecailles);
 			declaration.setString(2,nom);
@@ -118,10 +120,11 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	//update crache du feu
 	public static boolean updateFeu(String nom, String feu) {
 		boolean success=false;
 		try {
-			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			String query = "UPDATE dragons2 SET CracheDuFeu=? WHERE Dragon=?;";
 			PreparedStatement declaration=accessDataBase.prepareStatement(query);
 			declaration.setString(1,feu);
 			declaration.setString(2,nom);
@@ -134,10 +137,11 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	//update comportement
 	public static boolean updateAmour(String nom, String amour) {
 		boolean success=false;
 		try {
-			String query = "UPDATE dragons2 SET Sexe=? WHERE Dragon=?;";
+			String query = "UPDATE dragons2 SET ComportementAmoureux=? WHERE Dragon=?;";
 			PreparedStatement declaration=accessDataBase.prepareStatement(query);
 			declaration.setString(1,amour);
 			declaration.setString(2,nom);
@@ -150,6 +154,7 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	//update sexe
 	public static boolean updateSexe(String nom, String sexe) {
 		boolean success=false;
 		try {
@@ -238,6 +243,35 @@ public class QueryDragon extends MyConnexion{
 		String repNom=Clavier.lireString();
 		deleteByNamePrepared(repNom);
 	}
+	//proposition choix
+	public static void propUpdate() {
+		Boolean flag=false;
+		do {
+			flag=true;
+			System.out.println("Que voulez vous modifier? Réponse attendu nom/sexe/taille/ecaille/feu/amour)");
+			String repmodif=Clavier.lireString();
+			if(repmodif.equals("nom")) {
+			userUpdName();
+					}
+			else if(repmodif.equals("sexe")) {
+			userUpdSexe();
+			
+					}
+			else if(repmodif.equals("taille")) {
+			userUpdTaille();
+					}
+			else if(repmodif.equals("ecaille")) {
+			userUpdEcaille();
+					}
+			else if(repmodif.equals("feu")) {
+			userUpdFeu();
+					}
+			else if(repmodif.equals("amour")) {
+			userUpdAmour();
+		}
+		readAll();
+		}while(!flag);
+	}
 	
 	
 	public static void main(String[] args) {
@@ -267,35 +301,9 @@ public class QueryDragon extends MyConnexion{
 				}
 				System.out.println("Voulez-vous modifier le nom d'un dragon? Réponse attendue: o/n");
 				String repUpd=Clavier.lireString();
-				Boolean flag=false;
+				
 				if (repUpd.equals("o")) {
-					do {
-						flag=true;
-						System.out.println("Que voulez vous modifier? Réponse attendu nom/sexe/taille/ecaille/feu/amour)");
-						String repmodif=Clavier.lireString();
-						if(repmodif.equals("nom")) {
-						userUpdName();
-								}
-						else if(repmodif.equals("sexe")) {
-						userUpdSexe();
-						
-								}
-						else if(repmodif.equals("taille")) {
-						userUpdTaille();
-								}
-						else if(repmodif.equals("ecaille")) {
-						userUpdEcaille();
-								}
-						else if(repmodif.equals("feu")) {
-						userUpdFeu();
-								}
-						else if(repmodif.equals("amour")) {
-						userUpdAmour();
-					}
-					readAll();
-					}while(!flag);
-					
-					
+					propUpdate();	
 				}
 				System.out.println("Voulez-vous supprimer un dragon? Réponse attendue: o/n");
 				String repDel=Clavier.lireString();
