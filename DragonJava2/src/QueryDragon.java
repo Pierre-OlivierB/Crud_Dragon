@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class QueryDragon extends MyConnexion{
 	//static Scanner scan=new Scanner(System.in);
 	static Clavier scan=new Clavier(); 
+	static Boolean flag=false;
 	//create
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
 		boolean flag=false;
@@ -243,9 +244,26 @@ public class QueryDragon extends MyConnexion{
 		String repNom=Clavier.lireString();
 		deleteByNamePrepared(repNom);
 	}
+	//proposition boucle
+	public static boolean propBool() {
+		flag=true;
+		System.out.println("Voulez-vous faire d'autres modifications dans la base de données? Réponse attendue o/n");
+		String repboucle=Clavier.lireString();
+		if(repboucle.equals("o")) {
+			flag=false;
+		}
+		else if(repboucle.equals("n")) {
+			flag=true;
+		}
+		else {
+			System.out.println("La réponse choisi n'est pas bonne, veuillez recommencer.");
+			flag=false;
+		}
+		return flag;
+	}
 	//proposition choix
 	public static void propUpdate() {
-		Boolean flag=false;
+		
 		do {
 			flag=true;
 			System.out.println("Que voulez vous modifier? Réponse attendu nom/sexe/taille/ecaille/feu/amour)");
@@ -268,8 +286,9 @@ public class QueryDragon extends MyConnexion{
 					}
 			else if(repmodif.equals("amour")) {
 			userUpdAmour();
-		}
-		readAll();
+			}
+			readAll();
+			propBool();	
 		}while(!flag);
 	}
 	
@@ -286,6 +305,7 @@ public class QueryDragon extends MyConnexion{
 //		deleteByNamePrepared("DenverA");
 //		readAll();	
 		openConnection();
+		testConnection();
 		boolean choix=false;
 		do {
 		
@@ -299,7 +319,7 @@ public class QueryDragon extends MyConnexion{
 					userCreaChoice();
 					readAll();
 				}
-				System.out.println("Voulez-vous modifier le nom d'un dragon? Réponse attendue: o/n");
+				System.out.println("Voulez-vous modifier un dragon? Réponse attendue: o/n");
 				String repUpd=Clavier.lireString();
 				
 				if (repUpd.equals("o")) {
