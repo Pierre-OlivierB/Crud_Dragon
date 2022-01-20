@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QueryDragon extends MyConnexion{
+	static Scanner scan=new Scanner(System.in);
 	public static boolean create(String dragon,int id, String sexe, int longueur, int ecailles, String feu,String amour) {
 		boolean flag=false;
 		try {
@@ -79,9 +80,33 @@ public class QueryDragon extends MyConnexion{
 			}
 		return success;
 	}
+	public static void userCreaChoice() {
+		System.out.println("Quel est son nom?");
+		String repNom=scan.nextLine();
+		System.out.println("Quel est son id?");
+		int repId=scan.nextInt();
+		scan.nextLine();
+		System.out.println("Quel est son sexe? rep attendue: M ou F");
+		String repSexe=scan.nextLine();
+		System.out.println("Quel est sa taille?");
+		int repTail=scan.nextInt();
+		System.out.println("Quel est son nombre d'écailles?");
+		int repEcail=scan.nextInt();
+		scan.nextLine();
+		System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
+		String repFeu=scan.nextLine();
+		System.out.println("Quel est son comportement amoureux?");
+		String repAmor=scan.nextLine();
+		create(repNom,repId,repSexe,repTail,repEcail,repFeu,repAmor);
+	}
+	public static void userDelChoice() {
+		System.out.println("Quel est le dragon que vous voulez supprimer? Réponse attendue: nom du Dragon");
+		String repNom=scan.nextLine();
+		deleteByNamePrepared(repNom);
+	}
+	
+	
 	public static void main(String[] args) {
-		Scanner scan=new Scanner(System.in);
-		
 		openConnection();
 		readAll();
 		//update("poivre");
@@ -90,8 +115,7 @@ public class QueryDragon extends MyConnexion{
 		update("DenverA");
 		readAll();
 		deleteByNamePrepared("DenverA");
-		readAll();
-		closeConnection();
+		readAll();		
 		boolean choix=false;
 		do {
 		
@@ -102,20 +126,20 @@ public class QueryDragon extends MyConnexion{
 				System.out.println("Voulez-vous créer un dragon? Réponse attendue: o/n");
 				String repCrea=scan.nextLine();
 				if (repCrea.equals("o")) {
-					System.out.println("Quel est son nom?");
-					String repNom=scan.nextLine();
-					System.out.println("Quel est son id?");
-					int repId=scan.nextInt();
-					scan.nextLine();
-					System.out.println("Quel est son sexe?");
-					String repSexe=scan.nextLine();
-					System.out.println("Quel est sa taille?");
-					System.out.println("Quel est son nombre d'écailles?");
-					System.out.println("Crache-t-il du feu? réponse attendue oui/non.");
-					System.out.println("Quel est son nom?");
+					userCreaChoice();
+					readAll();
+				}
+				System.out.println("Voulez-vous supprimer un dragon? Réponse attendue: o/n");
+				String repDel=scan.nextLine();
+				if (repDel.equals("o")) {
+					userDelChoice();
+					readAll();
 				}
 			}
+		
+			
 		}while(!choix);
+		closeConnection();
 		System.out.println("Les portes du pénitencier, vont se refermer. Bonne journée.");
 		}
 }

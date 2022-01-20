@@ -1,0 +1,585 @@
+!SESSION 2022-01-20 09:09:10.587 -----------------------------------------------
+eclipse.buildId=4.22.0.I20211124-1800
+java.version=17.0.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.gwtplugins.gdt.eclipse.core 4 0 2022-01-20 09:09:13.175
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gdt.eclipse.core [501]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.platform [503]
+         No resolution report for the bundle.  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gdt.eclipse.maven 4 0 2022-01-20 09:09:13.207
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gdt.eclipse.maven [502]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.core [501]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.platform [503]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gdt.eclipse.platform 4 0 2022-01-20 09:09:13.232
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gdt.eclipse.platform [503]
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gdt.eclipse.suite 4 0 2022-01-20 09:09:13.261
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gdt.eclipse.suite [504]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core; visibility:="reexport"
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.core [501]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.platform [503]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.oophm; visibility:="reexport"
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.oophm; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.oophm [508]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+           -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gdt.eclipse.suite.update 4 0 2022-01-20 09:09:13.280
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gdt.eclipse.suite.update [505]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.core [501]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.platform [503]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.suite
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.suite; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.suite [504]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gwt.eclipse.core [506]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.oophm; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.oophm; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gwt.eclipse.oophm [508]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+                  -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.core 4 0 2022-01-20 09:09:13.302
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.core [506]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.core [501]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.platform [503]
+                No resolution report for the bundle.  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.gss 4 0 2022-01-20 09:09:13.318
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.gss [507]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.core [501]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.platform [503]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.oophm 4 0 2022-01-20 09:09:13.335
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.oophm [508]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.core [501]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.platform [503]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.sdkbundle.gwt27 4 0 2022-01-20 09:09:13.350
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.sdkbundle.gwt27 [509]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core; visibility:="reexport"
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.core [501]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.platform [503]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.sdkbundle.gwt28 4 0 2022-01-20 09:09:13.365
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.sdkbundle.gwt28 [510]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core; visibility:="reexport"
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gwt.eclipse.core [506]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gdt.eclipse.core [501]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.platform [503]
+                       No resolution report for the bundle.         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY com.gwtplugins.gwt.eclipse.wtp 4 0 2022-01-20 09:09:13.383
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: com.gwtplugins.gwt.eclipse.wtp [511]
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.suite
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.suite; bundle-version="3.0.0.201710131939"; singleton:="true"
+       com.gwtplugins.gdt.eclipse.suite [504]
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gwt.eclipse.core [506]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core; visibility:="reexport"
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+                     com.gwtplugins.gdt.eclipse.core [501]
+                       Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                         -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                            com.gwtplugins.gdt.eclipse.platform [503]
+                              No resolution report for the bundle.                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+           -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+         Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.oophm; visibility:="reexport"
+           -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.oophm; bundle-version="3.0.0.201710131939"; singleton:="true"
+              com.gwtplugins.gwt.eclipse.oophm [508]
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+                  -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+                Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+                  -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.platform
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.platform; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gdt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gdt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Unresolved requirement: Require-Bundle: com.gwtplugins.gwt.eclipse.core
+    -> Bundle-SymbolicName: com.gwtplugins.gwt.eclipse.core; bundle-version="3.0.0.201710131939"; singleton:="true"
+  Bundle was not resolved because of a uses constraint violation.
+  org.apache.felix.resolver.reason.ReasonException: Uses constraint violation. Unable to resolve resource com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"] because it is exposed to package 'javax.servlet' from resources javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"] and jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"] via two dependency chains.
+
+Chain 1:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=javax.servlet)
+     |
+    provide: osgi.wiring.bundle: javax.servlet
+  javax.servlet [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.v201112011016"; osgi.identity="javax.servlet"]
+
+Chain 2:
+  com.gwtplugins.gdt.eclipse.platform [osgi.identity; type="osgi.bundle"; version:Version="3.0.0.201710131939"; osgi.identity="com.gwtplugins.gdt.eclipse.platform"; singleton:="true"]
+    require: (osgi.wiring.bundle=org.eclipse.jetty.servlet)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="10.0.6"; osgi.wiring.bundle="org.eclipse.jetty.servlet"
+  org.eclipse.jetty.servlet [osgi.identity; type="osgi.bundle"; version:Version="10.0.6"; osgi.identity="org.eclipse.jetty.servlet"]
+    import: (&(osgi.wiring.package=javax.servlet)(&(version>=4.0.0)(!(version>=5.0.0))))
+     |
+    export: osgi.wiring.package: javax.servlet
+  jakarta.servlet-api [osgi.identity; type="osgi.bundle"; version:Version="4.0.0"; osgi.identity="jakarta.servlet-api"]
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.lambda$1(ModuleContainer.java:1834)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1829)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1775)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1739)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:228)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:339)
+
+!ENTRY org.eclipse.jface 2 0 2022-01-20 09:09:38.384
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-01-20 09:09:38.384
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5cc669d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@351be56b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2022-01-20 09:09:38.384
+!MESSAGE A conflict occurred for ALT+SHIFT+R:
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@212c0aff,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@21780905,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-01-20 09:09:42.228
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\thor-'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
